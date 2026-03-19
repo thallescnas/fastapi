@@ -8,4 +8,4 @@ app.include_router(router)
 @app.get("/")
 def home():
 
-    return {"message":"FastAPI + MongoDB + Docker do Jones"}
+    return {"message":"FastAPI + MongoDB"}

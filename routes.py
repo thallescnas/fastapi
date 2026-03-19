@@ -18,6 +18,18 @@ def list_users():
     return users
 
 @router.post("/users/create")
-def post_user(usinho: User):
-    for user in list_users:
-        if user
+def post_user(user: User):
+    user_dic = user.model_dump()
+    result = users_collection.insert_one(user_dic)
+    
+    return{
+        "message": {"User created"},
+        "id": str(result.inserted_id)
+    }
+@router.get("/users/{user_id}")
+def get_usr(user_id: str):
+    #Ta ruim o codigo arrumar em casa
+    if user:
+        user["_id"] = str(user["_id"])
+        return user
+    return {"error": "user not found!"}
