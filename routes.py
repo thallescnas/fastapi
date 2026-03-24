@@ -28,8 +28,15 @@ def post_user(user: User):
     }
 @router.get("/users/{user_id}")
 def get_usr(user_id: str):
-    #Ta ruim o codigo arrumar em casa
-    if user:
-        user["_id"] = str(user["_id"])
+    for user in list_users():
+     if str(user["_id"]) == user_id:
         return user
-    return {"error": "user not found!"}
+    return {"error": "202 user not found"}
+
+@router.delete("/users/delete/{user_id}")
+def delete_usr(user_id):
+   #arrumar
+   for user in list_users():
+      if str(user["_id"]) == user_id:
+         users_collection.delete_one(user)
+         return {"message": "sucess"}
